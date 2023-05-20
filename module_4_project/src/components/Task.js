@@ -6,7 +6,11 @@ function Task(props) {
   };
   return (
     <div>
-      <input type="checkbox" checked={props.completed} />
+      <input
+        type="checkbox"
+        checked={props.completed}
+        onChange={handleToggle}
+      />
       <span>{props.name}</span>
     </div>
   );

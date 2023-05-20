@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import Task from "./Task";
+import TaskForm from "./TaskForm";
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
+
+  const toggleTaskCompletion = (taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
 
   const addTask = (newTask) => {
     setTasks([...tasks, newTask]);
@@ -25,6 +36,7 @@ function TaskList() {
 
   return (
     <div>
+      <TaskForm onAddTask={addTask} />
       {tasks.map((task) => (
         <Task
           key={task.id}
